@@ -6,6 +6,12 @@ public class User {
     private String logIn;
     private String password;
 
+    public User(String userName, String logIn, String password) {
+        this.userName = userName;
+        this.logIn = logIn;
+        this.password = password;
+    }
+
     public Long getUserId() {
         return userId;
     }

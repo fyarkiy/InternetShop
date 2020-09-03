@@ -1,11 +1,17 @@
 package internet.store.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Order {
     private Long orderId;
     private List<Product> products;
     private Long userId;
+
+    public Order(List<Product> products, Long userId) {
+        this.products = new ArrayList<>();
+        this.userId = userId;
+    }
 
     public Long getOrderId() {
         return orderId;
