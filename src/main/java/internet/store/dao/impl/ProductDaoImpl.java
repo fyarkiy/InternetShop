@@ -1,5 +1,6 @@
-package internet.store.dao;
+package internet.store.dao.impl;
 
+import internet.store.dao.ProductDao;
 import internet.store.db.Storage;
 import internet.store.lib.Dao;
 import internet.store.model.Product;

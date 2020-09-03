@@ -1,7 +1,7 @@
 package internet.store.service;
 
 import internet.store.dao.ProductDao;
-import internet.store.dao.ProductDaoImpl;
+import internet.store.dao.impl.ProductDaoImpl;
 
 public class Factory {
     private static ProductDao productDao;

@@ -1,9 +1,12 @@
-package internet.store.service;
+package internet.store.service.impl;
 
 import internet.store.dao.ProductDao;
 import internet.store.lib.Inject;
 import internet.store.lib.Service;
 import internet.store.model.Product;
+import internet.store.service.Factory;
+import internet.store.service.ProductService;
+
 import java.util.List;
 import java.util.Optional;
 
