@@ -4,7 +4,6 @@ import internet.store.dao.ProductDao;
 import internet.store.lib.Inject;
 import internet.store.lib.Service;
 import internet.store.model.Product;
-import internet.store.service.Factory;
 import internet.store.service.ProductService;
 import java.util.List;
 import java.util.Optional;
@@ -16,26 +15,26 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public Product create(Product product) {
-        return Factory.getProductDao().create(product);
+        return productDao.create(product);
     }
 
     @Override
     public Optional<Product> get(Long id) {
-        return Factory.getProductDao().get(id);
+        return productDao.get(id);
     }
 
     @Override
     public List<Product> getAll() {
-        return Factory.getProductDao().getAll();
+        return productDao.getAll();
     }
 
     @Override
     public Product update(Product product) {
-        return Factory.getProductDao().update(product);
+        return productDao.update(product);
     }
 
     @Override
     public boolean delete(Product product) {
-        return Factory.getProductDao().delete(product);
+        return productDao.delete(product);
     }
 }
