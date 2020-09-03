@@ -25,7 +25,8 @@ public class Application {
         for (Product item : allProducts) {
             System.out.println(item.toString());
         }
-
+        product.setProductName("Samsung A");
+        product.setPrice(2550);
         System.out.println(productService.update(product).toString());
 
         System.out.println(productService.delete(product));
