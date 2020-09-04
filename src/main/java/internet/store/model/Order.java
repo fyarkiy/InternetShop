@@ -1,5 +1,6 @@
 package internet.store.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Order {
@@ -9,6 +10,7 @@ public class Order {
 
     public Order(Long userId) {
         this.userId = userId;
+        products = new ArrayList<>();
     }
 
     public Long getOrderId() {
