@@ -1,5 +1,6 @@
 package internet.store.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ShoppingCart {
@@ -7,7 +8,8 @@ public class ShoppingCart {
     private List<Product> products;
     private Long userId;
 
-    public ShoppingCart(Long userId) {
+    public ShoppingCart(List<Product> products, Long userId) {
+        this.products = new ArrayList<>();
         this.userId = userId;
     }
 
