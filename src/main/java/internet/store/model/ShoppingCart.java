@@ -39,8 +39,7 @@ public class ShoppingCart {
 
     @Override
     public String toString() {
-        return "ShoppingCart{"
-                + "cartId="
+        return "ShoppingCart{ cartId="
                 + cartId
                 + ", products="
                 + products
