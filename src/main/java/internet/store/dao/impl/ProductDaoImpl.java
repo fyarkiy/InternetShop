@@ -20,7 +20,7 @@ public class ProductDaoImpl implements ProductDao {
     @Override
     public Optional<Product> get(Long id) {
         return Storage.products.stream()
-                .filter(product -> product.getId().equals(id))
+                .filter(p -> p.getId().equals(id))
                 .findFirst();
     }
 
