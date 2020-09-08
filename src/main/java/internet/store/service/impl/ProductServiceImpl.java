@@ -6,7 +6,6 @@ import internet.store.lib.Service;
 import internet.store.model.Product;
 import internet.store.service.ProductService;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class ProductServiceImpl implements ProductService {
@@ -19,8 +18,8 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public Optional<Product> get(Long id) {
-        return productDao.get(id);
+    public Product get(Long id) {
+        return productDao.get(id).get();
     }
 
     @Override
@@ -35,6 +34,6 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public boolean delete(Product product) {
-        return productDao.delete(product);
+        return productDao.delete(product.getId());
     }
 }
