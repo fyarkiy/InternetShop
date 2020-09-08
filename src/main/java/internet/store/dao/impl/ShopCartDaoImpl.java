@@ -4,6 +4,7 @@ import internet.store.dao.ShopCartDao;
 import internet.store.db.Storage;
 import internet.store.lib.Dao;
 import internet.store.model.ShoppingCart;
+import java.util.List;
 import java.util.Optional;
 import java.util.stream.IntStream;
 
@@ -17,9 +18,14 @@ public class ShopCartDaoImpl implements ShopCartDao {
     }
 
     @Override
-    public Optional<ShoppingCart> getByUserId(Long userID) {
+    public List<ShoppingCart> getAll() {
+        return Storage.shopCarts;
+    }
+
+    @Override
+    public Optional<ShoppingCart> get(Long userId) {
         return Storage.shopCarts.stream()
-                .filter(s -> s.getUserId().equals(userID))
+                .filter(s -> s.getUserId().equals(userId))
                 .findFirst();
     }
 
@@ -33,8 +39,7 @@ public class ShopCartDaoImpl implements ShopCartDao {
     }
 
     @Override
-    public boolean deleteCart(ShoppingCart shoppingCart) {
-        return Storage.shopCarts
-                .removeIf(c -> c.getCartId().equals(shoppingCart.getCartId()));
+    public boolean delete(Long id) {
+        return Storage.shopCarts.removeIf(s -> s.getCartId().equals(id));
     }
 }
