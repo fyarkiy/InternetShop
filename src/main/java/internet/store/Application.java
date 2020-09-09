@@ -34,7 +34,7 @@ public class Application {
         samsung.setProductName("Samsung A");
         samsung.setPrice(2550);
         System.out.println(productService.update(samsung).toString());
-        System.out.println(productService.delete(samsung));
+        System.out.println(productService.delete(samsung.getId()));
         System.out.println(productService.getAll());
 
         UserService userService = (UserService) injector.getInstance(UserService.class);
