@@ -12,7 +12,6 @@ public class IndexController extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
         String timeString = LocalTime.now().toString();
-
         req.setAttribute("time", timeString);
         req.getRequestDispatcher("/WEB-INF/views/index.jsp").forward(req, resp);
     }

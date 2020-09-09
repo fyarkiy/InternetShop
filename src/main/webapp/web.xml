@@ -7,7 +7,6 @@
         <servlet-name>index</servlet-name>
         <servlet-class>internet.store.controllers.IndexController</servlet-class>
     </servlet>
-
     <servlet-mapping>
         <servlet-name>index</servlet-name>
         <url-pattern>/</url-pattern>
@@ -15,31 +14,74 @@
 
     <servlet>
         <servlet-name>allUsers</servlet-name>
-        <servlet-class>internet.store.controllers.UserController</servlet-class>
+        <servlet-class>internet.store.controllers.usercontroller.UserController</servlet-class>
     </servlet>
-
     <servlet-mapping>
         <servlet-name>allUsers</servlet-name>
-        <url-pattern>/users/all</url-pattern>
+        <url-pattern>/user/all</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>deleteUser</servlet-name>
+        <servlet-class>internet.store.controllers.usercontroller.DeleteUserController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>deleteUser</servlet-name>
+        <url-pattern>/user/delete</url-pattern>
     </servlet-mapping>
 
     <servlet>
         <servlet-name>registration</servlet-name>
-        <servlet-class>internet.store.controllers.RegistrationController</servlet-class>
+        <servlet-class>internet.store.controllers.usercontroller.RegistrationController</servlet-class>
     </servlet>
-
     <servlet-mapping>
         <servlet-name>registration</servlet-name>
         <url-pattern>/registration</url-pattern>
     </servlet-mapping>
 
     <servlet>
+        <servlet-name>allProduct</servlet-name>
+        <servlet-class>internet.store.controllers.productcontroller.ProductController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>allProduct</servlet-name>
+        <url-pattern>/product/allProduct</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
         <servlet-name>injectData</servlet-name>
         <servlet-class>internet.store.controllers.InjectDataController</servlet-class>
     </servlet>
-
     <servlet-mapping>
         <servlet-name>injectData</servlet-name>
         <url-pattern>/injectData</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>productSetUp</servlet-name>
+        <servlet-class>internet.store.controllers.productcontroller.ProductSetUp</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>productSetUp</servlet-name>
+        <url-pattern>/productSetUp</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ShopCartAddProduct</servlet-name>
+        <servlet-class>internet.store.controllers.shopcartcontroller.ShopCartAddProduct</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ShopCartAddProduct</servlet-name>
+        <url-pattern>/shopcart/addProduct</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ProductFromShopCart</servlet-name>
+        <servlet-class>internet.store.controllers.shopcartcontroller.ShopCartController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ProductFromShopCart</servlet-name>
+        <url-pattern>/shopcart/productFromShopCart</url-pattern>
+    </servlet-mapping>
+
 </web-app>

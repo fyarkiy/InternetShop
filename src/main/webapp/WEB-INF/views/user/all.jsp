@@ -1,11 +1,4 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%--
-  Created by IntelliJ IDEA.
-  User: Admin
-  Date: 09.09.2020
-  Time: 12:34
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -16,8 +9,9 @@
 
 <table border="1">
     <tr>
-        <th>User ID</th>
+        <th>User Id</th>
         <th>User Name</th>
+        <th>Remove User</th>
     </tr>
     <c:forEach var="user" items="${users}">
         <tr>
@@ -27,8 +21,13 @@
             <td>
                 <c:out value="${user.userName}"/>
             </td>
+            <td>
+                <a href="${pageContext.request.contextPath}/user/delete?id=${user.userId}">Delete</a>
+            </td>
         </tr>
     </c:forEach>
 </table>
+<br>
+<a href="${pageContext.request.contextPath}/">Go to the main page</a>
 </body>
 </html>
