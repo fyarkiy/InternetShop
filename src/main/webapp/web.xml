@@ -9,6 +9,79 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>index</servlet-name>
-        <url-pattern>/index</url-pattern>
+        <url-pattern>/</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>allUsers</servlet-name>
+        <servlet-class>internet.store.controllers.usercontroller.UserController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>allUsers</servlet-name>
+        <url-pattern>/user/all</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>userDelete</servlet-name>
+        <servlet-class>internet.store.controllers.usercontroller.DeleteUserController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>userDelete</servlet-name>
+        <url-pattern>/user/delete</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>registration</servlet-name>
+        <servlet-class>internet.store.controllers.usercontroller.RegistrationController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>registration</servlet-name>
+        <url-pattern>/registration</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>allProduct</servlet-name>
+        <servlet-class>internet.store.controllers.productcontroller.GetAllProductController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>allProduct</servlet-name>
+        <url-pattern>/product/all</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>injectData</servlet-name>
+        <servlet-class>internet.store.controllers.InjectDataController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>injectData</servlet-name>
+        <url-pattern>/user/inject</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>productCreate</servlet-name>
+        <servlet-class>internet.store.controllers.productcontroller.AddProductController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>productCreate</servlet-name>
+        <url-pattern>/product/create</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>shoppingCartAddProduct</servlet-name>
+        <servlet-class>internet.store.controllers.shoppingcartcontroller.ShoppingCartAddProductController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>shoppingCartAddProduct</servlet-name>
+        <url-pattern>/shoppingcart/product/add</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>productFromShopCart</servlet-name>
+        <servlet-class>internet.store.controllers.shoppingcartcontroller.ShoppingCartController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>productFromShopCart</servlet-name>
+        <url-pattern>/shoppingcart/product</url-pattern>
+    </servlet-mapping>
+
 </web-app>
