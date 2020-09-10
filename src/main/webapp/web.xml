@@ -41,7 +41,7 @@
 
     <servlet>
         <servlet-name>allProduct</servlet-name>
-        <servlet-class>internet.store.controllers.productcontroller.ProductController</servlet-class>
+        <servlet-class>internet.store.controllers.productcontroller.GetAllProductController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>allProduct</servlet-name>
@@ -54,30 +54,30 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>injectData</servlet-name>
-        <url-pattern>/injectData</url-pattern>
+        <url-pattern>/user/inject</url-pattern>
     </servlet-mapping>
 
     <servlet>
         <servlet-name>productSetUp</servlet-name>
-        <servlet-class>internet.store.controllers.productcontroller.ProductSetUp</servlet-class>
+        <servlet-class>internet.store.controllers.productcontroller.AddProductController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>productSetUp</servlet-name>
-        <url-pattern>/product/setUp</url-pattern>
+        <url-pattern>/product/create</url-pattern>
     </servlet-mapping>
 
     <servlet>
         <servlet-name>ShopCartAddProduct</servlet-name>
-        <servlet-class>internet.store.controllers.shopcartcontroller.ShopCartAddProduct</servlet-class>
+        <servlet-class>internet.store.controllers.shopcartcontroller.ShoppingCartAddProductController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>ShopCartAddProduct</servlet-name>
-        <url-pattern>/shopcart/addProduct</url-pattern>
+        <url-pattern>/shopcart/product/add</url-pattern>
     </servlet-mapping>
 
     <servlet>
         <servlet-name>ProductFromShopCart</servlet-name>
-        <servlet-class>internet.store.controllers.shopcartcontroller.ShopCartController</servlet-class>
+        <servlet-class>internet.store.controllers.shopcartcontroller.ShoppingCartController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>ProductFromShopCart</servlet-name>

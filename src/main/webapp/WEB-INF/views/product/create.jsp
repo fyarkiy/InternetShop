@@ -5,7 +5,7 @@
 </head>
 <body>
 <h1>Hello Mate! Please, provide product details</h1>
-<form method="post" action="${pageContext.request.contextPath}/product/setUp">
+<form method="post" action="${pageContext.request.contextPath}/product/create">
     Please provide product name: <input type="text" name="productName">
     Please provide product price: <input type="number" name="price">
     <br>

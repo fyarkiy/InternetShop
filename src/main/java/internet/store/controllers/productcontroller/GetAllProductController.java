@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class ProductController extends HttpServlet {
+public class GetAllProductController extends HttpServlet {
     private static final Injector injector = Injector.getInstance("internet.store");
     private final ProductService productService = (ProductService) injector
             .getInstance(ProductService.class);
@@ -21,6 +21,5 @@ public class ProductController extends HttpServlet {
         List<Product> allProducts = productService.getAll();
         req.setAttribute("products", allProducts);
         req.getRequestDispatcher("/WEB-INF/views/product/all.jsp").forward(req, resp);
-
     }
 }
