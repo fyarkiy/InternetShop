@@ -25,7 +25,7 @@
                 <c:out value="${product.price}"/>
             </td>
             <td>
-                <form method="get" action="${pageContext.request.contextPath}/shopcart/product/add">
+                <form method="get" action="${pageContext.request.contextPath}/shoppingcart/product/add">
                     <input type="hidden" name="productId" value="${product.id}">
                     <button type="submit">I want this!</button>
                 </form>

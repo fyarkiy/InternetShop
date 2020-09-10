@@ -14,7 +14,7 @@
 <br>
 <a href="${pageContext.request.contextPath}/product/all">Show All products</a>
 <br>
-<a href="${pageContext.request.contextPath}/shopcart/product">Show products from Shopping Cart</a>
+<a href="${pageContext.request.contextPath}/shoppingcart/product">Show products from Shopping Cart</a>
 <br>
 <a href="${pageContext.request.contextPath}/user/inject">Add mock data</a>
 </body>
