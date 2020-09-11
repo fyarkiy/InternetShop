@@ -8,15 +8,16 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class GetAllProductController extends HttpServlet {
-    private static final Injector injector = Injector.getInstance("internet.store");
-    private final ProductService productService = (ProductService) injector
+public class ManageProductController extends HttpServlet {
+    public static final Injector injector = Injector
+            .getInstance("internet.store");
+    public final ProductService productService = (ProductService) injector
             .getInstance(ProductService.class);
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
         req.setAttribute("products", productService.getAll());
-        req.getRequestDispatcher("/WEB-INF/views/product/all.jsp").forward(req, resp);
+        req.getRequestDispatcher("/WEB-INF/views/product/manage.jsp").forward(req, resp);
     }
 }

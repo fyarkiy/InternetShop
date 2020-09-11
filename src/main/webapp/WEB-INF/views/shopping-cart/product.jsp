@@ -2,11 +2,17 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>All Product</title>
+    <title>Products from Shopping Cart</title>
 </head>
 <body>
-<h1>List of products</h1>
-<table border="2">
+<h1> List of Selected Products from Shopping Cart </h1>
+<h3> Customer </h3>
+<br>
+<form method="get" action="${pageContext.request.contextPath}/order/create">
+    <button type="submit">Make an Order</button>
+</form>
+<br>
+<table border="3">
     <tr>
         <th> Product Id</th>
         <th> Product Name</th>
@@ -25,10 +31,7 @@
                 <c:out value="${product.price}"/>
             </td>
             <td>
-                <form method="get" action="${pageContext.request.contextPath}/shopping-cart/product/add">
-                    <input type="hidden" name="productId" value="${product.id}">
-                    <button type="submit">I want this!</button>
-                </form>
+                <a href="${pageContext.request.contextPath}/shopping-cart/product/remove?id=${product.id}">Remove</a>
             </td>
         </tr>
     </c:forEach>

@@ -14,7 +14,16 @@
 <br>
 <a href="${pageContext.request.contextPath}/product/all">Show All products</a>
 <br>
-<a href="${pageContext.request.contextPath}/shoppingcart/product">Show products from Shopping Cart</a>
+<a href="${pageContext.request.contextPath}/shopping-cart/product">Show products from Shopping Cart</a>
+<br>
+<a href="${pageContext.request.contextPath}/user/order">Show all User orders (user view)</a>
+<br>
+<br>
+<br>
+<h4>Admin block </h4>
+<a href="${pageContext.request.contextPath}/order/all">Show all orders of our shop (Admin view)</a>
+<br>
+<a href="${pageContext.request.contextPath}/product/manage">Show all products of our shop (Admin view)</a>
 <br>
 <a href="${pageContext.request.contextPath}/user/inject">Add mock data</a>
 </body>

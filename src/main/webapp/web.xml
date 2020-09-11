@@ -49,6 +49,15 @@
     </servlet-mapping>
 
     <servlet>
+        <servlet-name>manageAllProduct</servlet-name>
+        <servlet-class>internet.store.controllers.productcontroller.ManageProductController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>manageAllProduct</servlet-name>
+        <url-pattern>/product/manage</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
         <servlet-name>injectData</servlet-name>
         <servlet-class>internet.store.controllers.InjectDataController</servlet-class>
     </servlet>
@@ -68,29 +77,83 @@
 
     <servlet>
         <servlet-name>shoppingCartAddProduct</servlet-name>
-        <servlet-class>internet.store.controllers.shoppingcartcontroller.ShoppingCartAddProductController</servlet-class>
+        <servlet-class>internet.store.controllers.shoppingcartcontroller.AddProductToShoppingCartController
+        </servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>shoppingCartAddProduct</servlet-name>
-        <url-pattern>/shoppingcart/product/add</url-pattern>
+        <url-pattern>/shopping-cart/product/add</url-pattern>
     </servlet-mapping>
 
     <servlet>
         <servlet-name>productFromShopCart</servlet-name>
-        <servlet-class>internet.store.controllers.shoppingcartcontroller.ShoppingCartController</servlet-class>
+        <servlet-class>internet.store.controllers.shoppingcartcontroller.ManageShoppingCartController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>productFromShopCart</servlet-name>
-        <url-pattern>/shoppingcart/product</url-pattern>
+        <url-pattern>/shopping-cart/product</url-pattern>
     </servlet-mapping>
 
     <servlet>
-        <servlet-name>RemoveProductFromShopCart</servlet-name>
-        <servlet-class>internet.store.controllers.shopcartcontroller.ShoppingCartRemoveProduct</servlet-class>
+        <servlet-name>productRemoveFromShopCart</servlet-name>
+        <servlet-class>internet.store.controllers.shoppingcartcontroller.RemoveProductFromShoppingCart</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>RemoveProductFromShopCart</servlet-name>
-        <url-pattern>/shoppingcart/product/remove</url-pattern>
+        <servlet-name>productRemoveFromShopCart</servlet-name>
+        <url-pattern>/shopping-cart/product/remove</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>createOrder</servlet-name>
+        <servlet-class>internet.store.controllers.ordercontroller.CreateOrderController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>createOrder</servlet-name>
+        <url-pattern>/order/create</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>displayOrder</servlet-name>
+        <servlet-class>internet.store.controllers.ordercontroller.GetOrderController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>displayOrder</servlet-name>
+        <url-pattern>/order/product</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>allUserOrder</servlet-name>
+        <servlet-class>internet.store.controllers.ordercontroller.OrderByUserController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>allUserOrder</servlet-name>
+        <url-pattern>/user/order</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>allStoreOrder</servlet-name>
+        <servlet-class>internet.store.controllers.ordercontroller.DisplayAllOrderController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>allStoreOrder</servlet-name>
+        <url-pattern>/order/all</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>deleteOrder</servlet-name>
+        <servlet-class>internet.store.controllers.ordercontroller.DeleteOrderController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>deleteOrder</servlet-name>
+        <url-pattern>/order/delete</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>deleteProduct</servlet-name>
+        <servlet-class>internet.store.controllers.productcontroller.DeleteProductController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>deleteProduct</servlet-name>
+        <url-pattern>/product/delete</url-pattern>
+    </servlet-mapping>
 </web-app>
