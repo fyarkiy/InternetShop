@@ -8,8 +8,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class OrderByUserController extends HttpServlet {
-    private static final Injector injector = Injector.getInstance("internet.store");
+public class GetAllOrdersController extends HttpServlet {
+    private static final Injector injector = Injector
+            .getInstance("internet.store");
     private final OrderService orderService = (OrderService) injector
             .getInstance(OrderService.class);
 
@@ -17,6 +18,6 @@ public class OrderByUserController extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
         req.setAttribute("orders", orderService.getAll());
-        req.getRequestDispatcher("/WEB-INF/views/user/order.jsp").forward(req, resp);
+        req.getRequestDispatcher("/WEB-INF/views/order/all.jsp").forward(req, resp);
     }
 }
