@@ -50,7 +50,7 @@
 
     <servlet>
         <servlet-name>manageAllProduct</servlet-name>
-        <servlet-class>internet.store.controllers.productcontroller.ManageProductController</servlet-class>
+        <servlet-class>internet.store.controllers.productcontroller.ManageProductsController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>manageAllProduct</servlet-name>
