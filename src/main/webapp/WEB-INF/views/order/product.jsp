@@ -2,12 +2,10 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Products from Shopping Cart</title>
+    <title>Your order</title>
 </head>
 <body>
-<h1> List of Selected Products from Shopping Cart </h1>
-<h3> Customer </h3>
-<table border="3">
+<table border="4">
     <tr>
         <th> Product Id</th>
         <th> Product Name</th>
@@ -27,6 +25,8 @@
         </tr>
     </c:forEach>
 </table>
+<br>
+<a href="${pageContext.request.contextPath}/user/order">Go to the list of your orders</a>
 <br>
 <a href="${pageContext.request.contextPath}/">Go to the main page</a>
 </body>
