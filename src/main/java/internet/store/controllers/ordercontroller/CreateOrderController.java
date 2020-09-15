@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 public class CreateOrderController extends HttpServlet {
-    private static final Long USER_ID = 1L;
     private static final Injector injector = Injector
             .getInstance("internet.store");
     private final OrderService orderService = (OrderService) injector
@@ -21,7 +20,8 @@ public class CreateOrderController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
-        orderService.completeOrder(shoppingCartService.getByUserId(USER_ID));
+        Long userId = (Long) req.getSession().getAttribute("user_id");
+        orderService.completeOrder(shoppingCartService.getByUserId(userId));
         resp.sendRedirect(req.getContextPath() + "/");
     }
 }
