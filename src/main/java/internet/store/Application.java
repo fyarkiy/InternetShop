@@ -45,7 +45,7 @@ public class Application {
 
         System.out.println(userService.get(3L));
         System.out.println(userService.get(1L));
-        user.setLogIn("anytime");
+        user.setLogin("anytime");
         userService.update(user);
         userService.delete(1L);
         System.out.println(userService.getAll().toString());
