@@ -43,9 +43,9 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public Optional<User> findByLogin(String logIn) {
+    public Optional<User> findByLogin(String login) {
         return Storage.users.stream()
-                .filter(u -> u.getLogIn().equals(logIn))
+                .filter(u -> u.getLogin().equals(login))
                 .findFirst();
     }
 }

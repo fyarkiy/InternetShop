@@ -3,12 +3,12 @@ package internet.store.model;
 public class User {
     private Long userId;
     private String userName;
-    private String logIn;
+    private String login;
     private String password;
 
-    public User(String userName, String logIn, String password) {
+    public User(String userName, String login, String password) {
         this.userName = userName;
-        this.logIn = logIn;
+        this.login = login;
         this.password = password;
     }
 
@@ -28,12 +28,12 @@ public class User {
         this.userName = userName;
     }
 
-    public String getLogIn() {
-        return logIn;
+    public String getLogin() {
+        return login;
     }
 
-    public void setLogIn(String logIn) {
-        this.logIn = logIn;
+    public void setLogin(String login) {
+        this.login = login;
     }
 
     public String getPassword() {
@@ -50,7 +50,7 @@ public class User {
                 + userName
                 + '\''
                 + ", logIn='"
-                + logIn
+                + login
                 + '\''
                 + '}';
     }
