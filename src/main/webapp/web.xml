@@ -181,7 +181,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>accessDenied</servlet-name>
-        <url-pattern>/user/accessDenied</url-pattern>
+        <url-pattern>/user/access-denied</url-pattern>
     </servlet-mapping>
 
     <filter>

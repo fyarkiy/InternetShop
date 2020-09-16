@@ -3,7 +3,6 @@ package internet.store.controllers;
 import internet.store.lib.Injector;
 import internet.store.model.Product;
 import internet.store.model.Role;
-import internet.store.model.ShoppingCart;
 import internet.store.model.User;
 import internet.store.service.ProductService;
 import internet.store.service.ShoppingCartService;
@@ -30,7 +29,6 @@ public class InjectDataController extends HttpServlet {
         User admin = new User("Admin", "admin", "1");
         admin.setRoles(Set.of(Role.of("ADMIN")));
         userService.create(admin);
-        shoppingCartService.create(new ShoppingCart(admin.getUserId()));
 
         productService.create(new Product("Knife", 10));
         productService.create(new Product("Pot", 100));
