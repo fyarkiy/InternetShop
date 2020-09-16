@@ -39,7 +39,7 @@ public class RegistrationController extends HttpServlet {
             newUser.setRoles(Set.of(Role.of("USER")));
             userService.create(newUser);
             shoppingCartService.create(new ShoppingCart(newUser.getUserId()));
-            resp.sendRedirect(req.getContextPath() + "/");
+            resp.sendRedirect(req.getContextPath() + "/login");
         } else {
             req.setAttribute("message", "Your repeat password is not the same with password");
             req.getRequestDispatcher("/WEB-INF/views/registration.jsp").forward(req, resp);

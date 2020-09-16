@@ -21,7 +21,7 @@ public class AuthorisationFilter implements Filter {
     private static final String USER_ID = "user_id";
     private static final Injector injector = Injector.getInstance("internet.store");
     private final UserService userService = (UserService) injector.getInstance(UserService.class);
-    private Map<String, Set<Role.RoleName>> protectedUrls = new HashMap<>();
+    private final Map<String, Set<Role.RoleName>> protectedUrls = new HashMap<>();
 
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
@@ -33,7 +33,6 @@ public class AuthorisationFilter implements Filter {
         protectedUrls.put("/user/all", Set.of(Role.RoleName.ADMIN));
         protectedUrls.put("/user/delete", Set.of(Role.RoleName.ADMIN));
         protectedUrls.put("/order/create", Set.of(Role.RoleName.USER));
-        protectedUrls.put("/product/all", Set.of(Role.RoleName.USER));
         protectedUrls.put("/shopping-cart/product", Set.of(Role.RoleName.USER));
         protectedUrls.put("/shopping-cart/product/add", Set.of(Role.RoleName.USER));
         protectedUrls.put("/shopping-cart/product/remove", Set.of(Role.RoleName.USER));

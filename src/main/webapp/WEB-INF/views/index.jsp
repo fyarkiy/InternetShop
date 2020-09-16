@@ -8,8 +8,6 @@
 <br>
 <a href="${pageContext.request.contextPath}/registration">Add user to DB</a>
 <br>
-<a href="${pageContext.request.contextPath}/product/create">Add product to DB</a>
-<br>
 <a href="${pageContext.request.contextPath}/product/all">Show All products</a>
 <br>
 <a href="${pageContext.request.contextPath}/shopping-cart/product">Show products from Shopping Cart</a>
