@@ -19,6 +19,9 @@
 <a href="${pageContext.request.contextPath}/user/order">Show all User orders (user view)</a>
 <br>
 <br>
+<a href="${pageContext.request.contextPath}/logout">Logout</a>
+<br>
+<br>
 <br>
 <h4>Admin block </h4>
 <a href="${pageContext.request.contextPath}/order/all">Show all orders of our shop (Admin view)</a>
