@@ -175,15 +175,6 @@
         <url-pattern>/logout</url-pattern>
     </servlet-mapping>
 
-    <servlet>
-        <servlet-name>accessDenied</servlet-name>
-        <servlet-class>internet.store.controllers.usercontroller.LogoutController</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>accessDenied</servlet-name>
-        <url-pattern>/user/access-denied</url-pattern>
-    </servlet-mapping>
-
     <filter>
         <filter-name>authenticationFilter</filter-name>
         <filter-class>internet.store.web.filters.AuthenticationFilter</filter-class>
