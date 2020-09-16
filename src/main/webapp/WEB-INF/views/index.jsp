@@ -8,8 +8,6 @@
 <br>
 <a href="${pageContext.request.contextPath}/registration">Add user to DB</a>
 <br>
-<a href="${pageContext.request.contextPath}/user/all">Show All users</a>
-<br>
 <a href="${pageContext.request.contextPath}/product/create">Add product to DB</a>
 <br>
 <a href="${pageContext.request.contextPath}/product/all">Show All products</a>
@@ -24,6 +22,11 @@
 <br>
 <br>
 <h4>Admin block </h4>
+<br>
+<a href="${pageContext.request.contextPath}/user/all">Show All users</a>
+<br>
+<a href="${pageContext.request.contextPath}/product/create">Add product to DB</a>
+<br>
 <a href="${pageContext.request.contextPath}/order/all">Show all orders of our shop (Admin view)</a>
 <br>
 <a href="${pageContext.request.contextPath}/product/manage">Show all products of our shop (Admin view)</a>
