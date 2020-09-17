@@ -20,6 +20,8 @@
 <br>
 <a href="${pageContext.request.contextPath}/registration">Go to the Registration page</a>
 <br>
+<a href="${pageContext.request.contextPath}/product/all">Show All products</a>
+<br>
 <a href="${pageContext.request.contextPath}/">Go to the main page</a>
 </body>
 </html>

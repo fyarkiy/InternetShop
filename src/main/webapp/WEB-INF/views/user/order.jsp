@@ -25,5 +25,7 @@
 </table>
 <br>
 <a href="${pageContext.request.contextPath}/">Go to the main page</a>
+<br>
+<a href="${pageContext.request.contextPath}/logout">Logout</a>
 </body>
 </html>

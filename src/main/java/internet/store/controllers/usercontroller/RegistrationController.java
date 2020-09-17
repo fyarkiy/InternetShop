@@ -1,11 +1,13 @@
 package internet.store.controllers.usercontroller;
 
 import internet.store.lib.Injector;
+import internet.store.model.Role;
 import internet.store.model.ShoppingCart;
 import internet.store.model.User;
 import internet.store.service.ShoppingCartService;
 import internet.store.service.UserService;
 import java.io.IOException;
+import java.util.Set;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -34,9 +36,10 @@ public class RegistrationController extends HttpServlet {
 
         if (password.equals(repeatPassword)) {
             User newUser = new User(userName, login, password);
+            newUser.setRoles(Set.of(Role.of("USER")));
             userService.create(newUser);
             shoppingCartService.create(new ShoppingCart(newUser.getUserId()));
-            resp.sendRedirect(req.getContextPath() + "/");
+            resp.sendRedirect(req.getContextPath() + "/login");
         } else {
             req.setAttribute("message", "Your repeat password is not the same with password");
             req.getRequestDispatcher("/WEB-INF/views/registration.jsp").forward(req, resp);
