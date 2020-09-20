@@ -9,12 +9,13 @@ import internet.store.service.OrderService;
 import internet.store.service.ProductService;
 import internet.store.service.ShoppingCartService;
 import internet.store.service.UserService;
+import java.sql.SQLException;
 import java.util.List;
 
 public class Application {
     private static Injector injector = Injector.getInstance("internet.store");
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws SQLException {
         ProductService productService = (ProductService) injector.getInstance(ProductService.class);
 
         Product samsung = new Product("Samsung", 2500);

@@ -1,7 +1,6 @@
 package internet.store.controllers.productcontroller;
 
 import internet.store.lib.Injector;
-import internet.store.model.Product;
 import internet.store.service.ProductService;
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -25,7 +24,7 @@ public class AddProductController extends HttpServlet {
             throws ServletException, IOException {
         String productName = req.getParameter("productName");
         Long price = Long.valueOf(req.getParameter("price"));
-        productService.create(new Product(productName, price));
+        //productService.create(new Product(productName, price));
         resp.sendRedirect(req.getContextPath() + "/product/create");
     }
 }
