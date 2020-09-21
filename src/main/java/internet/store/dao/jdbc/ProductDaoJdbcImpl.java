@@ -18,34 +18,36 @@ import java.util.Optional;
 public class ProductDaoJdbcImpl implements ProductDao {
 
     @Override
-    public Product create(Product item) {
+    public Product create(Product product) {
         String query = "INSERT INTO products (product_name, price) VALUES (?, ?);";
         try (Connection connection = ConnectionUtil.getConnection()) {
             PreparedStatement statement = connection
                     .prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
-            statement.setString(1, item.getProductName());
-            statement.setDouble(2, item.getPrice());
+            statement.setString(1, product.getProductName());
+            statement.setDouble(2, product.getPrice());
             statement.executeUpdate();
             ResultSet resultSet = statement.getGeneratedKeys();
             if (resultSet.next()) {
-                item.setId(resultSet.getLong(1));
+                product.setId(resultSet.getLong(1));
             }
-            return item;
+            return product;
         } catch (SQLException ex) {
             throw new DataProcessingException("Product "
-                    + item.toString() + " was not created", ex);
+                    + product.toString() + " was not created", ex);
         }
     }
 
     @Override
     public Optional<Product> get(Long itemId) {
-        String query = "SELECT * FROM products WHERE id = ? AND deleted = 0;";
+        String query = "SELECT * FROM products WHERE id = ? AND deleted = false;";
         try (Connection connection = ConnectionUtil.getConnection()) {
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setLong(1, itemId);
             ResultSet resultSet = statement.executeQuery();
-            resultSet.next();
-            return Optional.of(retrieveDataFromDB(resultSet));
+            if (resultSet.next()) {
+                return Optional.of(retrieveDataFromDB(resultSet));
+            }
+            return Optional.empty();
         } catch (SQLException ex) {
             throw new DataProcessingException("No such product with id " + itemId, ex);
         }
@@ -53,7 +55,7 @@ public class ProductDaoJdbcImpl implements ProductDao {
 
     @Override
     public List<Product> getAll() {
-        String query = "SELECT * FROM products WHERE deleted = 0;";
+        String query = "SELECT * FROM products WHERE deleted = false;";
         List<Product> productList = new ArrayList<>();
         try (Connection connection = ConnectionUtil.getConnection()) {
             PreparedStatement preparedStatement = connection.prepareStatement(query);
@@ -68,37 +70,37 @@ public class ProductDaoJdbcImpl implements ProductDao {
     }
 
     @Override
-    public Product update(Product item) {
-        String query = "UPDATE products SET product_name = ?, price = ? where product_name = ?;";
+    public Product update(Product product) {
+        String query = "UPDATE products SET product_name = ?, price = ? "
+                + "WHERE id = ? AND deleted = false;";
         try (Connection connection = ConnectionUtil.getConnection()) {
             PreparedStatement statement = connection.prepareStatement(query);
-            statement.setString(1, item.getProductName());
-            statement.setDouble(2, item.getPrice());
-            statement.setString(3, item.getProductName());
+            statement.setString(1, product.getProductName());
+            statement.setDouble(2, product.getPrice());
+            statement.setLong(3, product.getId());
             statement.executeUpdate();
         } catch (SQLException ex) {
-            throw new DataProcessingException("Not able to update " + item.toString(), ex);
+            throw new DataProcessingException("Not able to update " + product.toString(), ex);
         }
-        return item;
+        return product;
     }
 
     @Override
-    public boolean delete(Long itemId) {
-        String query = "UPDATE products SET deleted = 1 where id = ?;";
+    public boolean delete(Long productId) {
+        String query = "UPDATE products SET deleted = true WHERE id = ?;";
         try (Connection connection = ConnectionUtil.getConnection()) {
             PreparedStatement statement = connection.prepareStatement(query);
-            statement.setLong(1, itemId);
+            statement.setLong(1, productId);
             return statement.executeUpdate() == 1;
         } catch (SQLException ex) {
             throw new DataProcessingException("Delete of product with id = "
-                    + itemId + "is failed", ex);
+                    + productId + "is failed", ex);
         }
     }
 
-    private static Product retrieveDataFromDB(ResultSet resultSet) throws SQLException {
-        Product product = new Product(resultSet.getString("product_name"),
-                resultSet.getDouble("price"));
-        product.setId(resultSet.getLong("id"));
+    private Product retrieveDataFromDB(ResultSet resultSet) throws SQLException {
+        Product product = new Product(resultSet.getLong("id"),
+                resultSet.getString("product_name"), resultSet.getDouble("price"));
         return product;
     }
 }

@@ -14,7 +14,7 @@ public class AppWithDB {
                 .getInstance(ProductService.class);
         Product apple = new Product("apple", 150);
         productService.create(apple);
-        Product pear = new Product("pear", 185);
+        Product pear = new Product(2L, "pear", 134);
         productService.update(pear);
 
         System.out.println(productService.delete(3L));

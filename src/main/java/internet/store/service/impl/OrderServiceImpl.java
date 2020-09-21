@@ -22,7 +22,7 @@ public class OrderServiceImpl implements OrderService {
         Order order = new Order(shoppingCart.getUserId());
         order.setProducts(List.copyOf(shoppingCart.getProducts()));
         shoppingCartService.clear(shoppingCart);
-        //orderDao.create(order);
+        orderDao.create(order);
         return order;
     }
 

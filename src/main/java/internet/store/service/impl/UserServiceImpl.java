@@ -5,7 +5,6 @@ import internet.store.lib.Inject;
 import internet.store.lib.Service;
 import internet.store.model.User;
 import internet.store.service.UserService;
-import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
 
@@ -15,7 +14,7 @@ public class UserServiceImpl implements UserService {
     private UserDao userDao;
 
     @Override
-    public User create(User user) throws SQLException {
+    public User create(User user) {
         return userDao.create(user);
     }
 

@@ -5,7 +5,6 @@ import internet.store.lib.Inject;
 import internet.store.lib.Service;
 import internet.store.model.Product;
 import internet.store.service.ProductService;
-import java.sql.SQLException;
 import java.util.List;
 
 @Service
@@ -14,7 +13,7 @@ public class ProductServiceImpl implements ProductService {
     private ProductDao productDao;
 
     @Override
-    public Product create(Product product) throws SQLException {
+    public Product create(Product product) {
         return productDao.create(product);
     }
 
