@@ -12,7 +12,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.NoSuchElementException;
 import java.util.Optional;
 
 @Dao
@@ -40,17 +39,13 @@ public class ProductDaoJdbcImpl implements ProductDao {
 
     @Override
     public Optional<Product> get(Long itemId) {
-        String query = "SELECT * FROM products WHERE id = ?;";
+        String query = "SELECT * FROM products WHERE id = ? AND deleted = 0;";
         try (Connection connection = ConnectionUtil.getConnection()) {
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setLong(1, itemId);
             ResultSet resultSet = statement.executeQuery();
             resultSet.next();
-            if (resultSet.getLong("deleted") == 0) {
-                return Optional.of(retrieveDataFromDB(resultSet));
-            }
-            throw new NoSuchElementException("Product with id = "
-                    + itemId + " was marked for deletion");
+            return Optional.of(retrieveDataFromDB(resultSet));
         } catch (SQLException ex) {
             throw new DataProcessingException("No such product with id " + itemId, ex);
         }
@@ -58,15 +53,13 @@ public class ProductDaoJdbcImpl implements ProductDao {
 
     @Override
     public List<Product> getAll() {
-        String query = "SELECT * FROM products;";
+        String query = "SELECT * FROM products WHERE deleted = 0;";
         List<Product> productList = new ArrayList<>();
         try (Connection connection = ConnectionUtil.getConnection()) {
             PreparedStatement preparedStatement = connection.prepareStatement(query);
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
-                if (resultSet.getLong("deleted") == 0) {
-                    productList.add(retrieveDataFromDB(resultSet));
-                }
+                productList.add(retrieveDataFromDB(resultSet));
             }
         } catch (SQLException ex) {
             throw new DataProcessingException("There are no products in DB", ex);
@@ -97,7 +90,8 @@ public class ProductDaoJdbcImpl implements ProductDao {
             statement.setLong(1, itemId);
             return statement.executeUpdate() == 1;
         } catch (SQLException ex) {
-            throw new RuntimeException("Delete of product with id = " + itemId + "is failed", ex);
+            throw new DataProcessingException("Delete of product with id = "
+                    + itemId + "is failed", ex);
         }
     }
 
