@@ -6,7 +6,6 @@ import internet.store.lib.Service;
 import internet.store.model.Product;
 import internet.store.model.ShoppingCart;
 import internet.store.service.ShoppingCartService;
-import java.sql.SQLException;
 
 @Service
 public class ShoppingCartServiceImpl implements ShoppingCartService {
@@ -14,7 +13,7 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
     private ShopCartDao shopCartDao;
 
     @Override
-    public ShoppingCart create(ShoppingCart shoppingCart) throws SQLException {
+    public ShoppingCart create(ShoppingCart shoppingCart) {
         return shopCartDao.create(shoppingCart);
     }
 

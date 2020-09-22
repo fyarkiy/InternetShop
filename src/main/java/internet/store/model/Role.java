@@ -8,6 +8,11 @@ public class Role {
         this.roleName = roleName;
     }
 
+    public Role(Long id, RoleName roleName) {
+        this.id = id;
+        this.roleName = roleName;
+    }
+
     public static Role of(String roleName) {
         return new Role(RoleName.valueOf(roleName));
     }
@@ -30,5 +35,11 @@ public class Role {
 
     public enum RoleName {
         ADMIN, USER;
+    }
+
+    @Override
+    public String toString() {
+        return "Role{ id= " + id
+                + ", roleName=" + roleName + '}';
     }
 }

@@ -15,6 +15,13 @@ public class User {
         this.password = password;
     }
 
+    public User(Long userId, String userName, String login, String password) {
+        this.userId = userId;
+        this.userName = userName;
+        this.login = login;
+        this.password = password;
+    }
+
     public Set<Role> getRoles() {
         return roles;
     }
@@ -60,7 +67,7 @@ public class User {
         return "User{ userName='"
                 + userName
                 + '\''
-                + ", logIn='"
+                + ", login='"
                 + login
                 + '\''
                 + '}';
