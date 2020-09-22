@@ -2,10 +2,11 @@ package internet.store.service;
 
 import internet.store.model.Product;
 import internet.store.model.ShoppingCart;
+import java.sql.SQLException;
 
 public interface ShoppingCartService {
 
-    ShoppingCart create(ShoppingCart shoppingCart);
+    ShoppingCart create(ShoppingCart shoppingCart) throws SQLException;
 
     ShoppingCart addProduct(ShoppingCart shoppingCart, Product product);
 

@@ -1,7 +1,6 @@
 package internet.store.controllers;
 
 import internet.store.lib.Injector;
-import internet.store.model.Product;
 import internet.store.model.Role;
 import internet.store.model.User;
 import internet.store.service.ProductService;
@@ -28,11 +27,11 @@ public class InjectDataController extends HttpServlet {
             throws ServletException, IOException {
         User admin = new User("Admin", "admin", "1");
         admin.setRoles(Set.of(Role.of("ADMIN")));
-        userService.create(admin);
-
+        /*userService.create(admin);
         productService.create(new Product("Knife", 10));
         productService.create(new Product("Pot", 100));
         productService.create(new Product("Napkins", 2));
         req.getRequestDispatcher("/WEB-INF/views/user/inject.jsp").forward(req, resp);
+         */
     }
 }

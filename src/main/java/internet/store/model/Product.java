@@ -10,6 +10,12 @@ public class Product {
         this.price = price;
     }
 
+    public Product(Long id, String productName, double price) {
+        this.id = id;
+        this.productName = productName;
+        this.price = price;
+    }
+
     public Long getId() {
         return id;
     }
