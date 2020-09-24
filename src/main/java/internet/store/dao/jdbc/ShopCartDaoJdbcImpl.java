@@ -58,7 +58,7 @@ public class ShopCartDaoJdbcImpl implements ShopCartDao {
                 PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setLong(1, cartId);
             int updates = statement.executeUpdate();
-            return  updates > 0;
+            return updates > 0;
         } catch (SQLException ex) {
             throw new DataProcessingException("Shopping cart for card ID "
                     + cartId + " was not deleted", ex);
@@ -71,7 +71,7 @@ public class ShopCartDaoJdbcImpl implements ShopCartDao {
                 PreparedStatement statement = connection.prepareStatement(queryDelete)) {
             statement.setLong(1, cartId);
             int updates = statement.executeUpdate();
-            return  updates > 0;
+            return updates > 0;
         } catch (SQLException ex) {
             throw new DataProcessingException("products from cart "
                     + cartId + " were not deleted", ex);

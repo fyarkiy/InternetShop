@@ -92,7 +92,7 @@ public class ProductDaoJdbcImpl implements ProductDao {
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setLong(1, productId);
             int updates = statement.executeUpdate();
-            return  updates > 0;
+            return updates > 0;
         } catch (SQLException ex) {
             throw new DataProcessingException("Delete of product with id = "
                     + productId + "is failed", ex);
