@@ -197,7 +197,8 @@ public class UserDaoJdbcImpl implements UserDao {
         try (Connection connection = ConnectionUtil.getConnection();
                 PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setLong(1, userId);
-            return statement.executeUpdate() > 0;
+            int updates = statement.executeUpdate();
+            return updates > 0;
         } catch (SQLException ex) {
             throw new DataProcessingException("roles for user " + userId
                     + " were not updated", ex);

@@ -61,7 +61,8 @@ public class OrderDaoJdbcImpl implements OrderDao {
         try (Connection connection = ConnectionUtil.getConnection();
                 PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setLong(1, orderId);
-            return statement.executeUpdate() > 0;
+            int updates = statement.executeUpdate();
+            return updates > 0;
         } catch (SQLException ex) {
             throw new DataProcessingException("Order # " + orderId + " was not deleted", ex);
         }
