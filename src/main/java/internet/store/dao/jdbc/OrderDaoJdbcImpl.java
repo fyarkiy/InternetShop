@@ -50,12 +50,13 @@ public class OrderDaoJdbcImpl implements OrderDao {
 
     @Override
     public Order update(Order order) {
-        deleteProductsfromOrder(order);
+        deleteProductsFromOrder(order.getOrderId());
         return addProductsToOrder(order);
     }
 
     @Override
     public boolean delete(Long orderId) {
+        deleteProductsFromOrder(orderId);
         String query = "UPDATE orders SET deleted = true WHERE order_id = ?;";
         try (Connection connection = ConnectionUtil.getConnection();
                 PreparedStatement statement = connection.prepareStatement(query)) {
@@ -90,13 +91,14 @@ public class OrderDaoJdbcImpl implements OrderDao {
         return Optional.empty();
     }
 
-    private boolean deleteProductsfromOrder(Order order) {
+    private boolean deleteProductsFromOrder(Long orderId) {
         String query = "DELETE FROM orders_products WHERE order_id = ?;";
         try (Connection connection = ConnectionUtil.getConnection();
                 PreparedStatement statement = connection.prepareStatement(query)) {
+            statement.setLong(1, orderId);
             return statement.executeUpdate() > 0;
         } catch (SQLException ex) {
-            throw new DataProcessingException("products from order " + order.getOrderId()
+            throw new DataProcessingException("products from order " + orderId
                     + " were not deleted", ex);
         }
     }

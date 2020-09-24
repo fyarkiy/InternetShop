@@ -6,7 +6,9 @@
 <body>
 <h1>Hello Mate!</h1>
 <br>
-<a href="${pageContext.request.contextPath}/registration">Add user to DB</a>
+<a href="${pageContext.request.contextPath}/login">Log into store</a>
+<br>
+<a href="${pageContext.request.contextPath}/registration">Register in our store</a>
 <br>
 <a href="${pageContext.request.contextPath}/product/all">Show All products</a>
 <br>

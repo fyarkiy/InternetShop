@@ -21,9 +21,13 @@ import java.util.Set;
 public class UserDaoJdbcImpl implements UserDao {
     @Override
     public Optional<User> findByLogin(String login) {
-        User user = getUserByLogin(login);
-        user.setRoles(getUserRoles(user.getUserId()));
-        return Optional.of(user);
+
+        Optional<User> user = getUserByLogin(login);
+        if (user.isEmpty()) {
+            return Optional.empty();
+        }
+        user.get().setRoles(getUserRoles(user.get().getUserId()));
+        return user;
     }
 
     @Override
@@ -44,17 +48,18 @@ public class UserDaoJdbcImpl implements UserDao {
             throw new DataProcessingException("User " + user.toString()
                     + " was not created", ex);
         }
-        for (Role role : user.getRoles()) {
-            defineRoles(user.getUserId(), role.getRoleName().name());
-        }
+        defineRoles(user);
         return user;
     }
 
     @Override
     public Optional<User> get(Long id) {
-        User user = getUserById(id);
-        user.setRoles(getUserRoles(id));
-        return Optional.of(user);
+        Optional<User> user = getUserById(id);
+        if (user.isEmpty()) {
+            return Optional.empty();
+        }
+        user.get().setRoles(getUserRoles(id));
+        return user;
     }
 
     @Override
@@ -92,49 +97,52 @@ public class UserDaoJdbcImpl implements UserDao {
             throw new DataProcessingException("User " + user.getUserId() + " not updated", ex);
         }
         removeRoles(user.getUserId());
-        for (Role role : user.getRoles()) {
-            defineRoles(user.getUserId(), role.getRoleName().name());
-        }
+        defineRoles(user);
         return user;
     }
 
     @Override
     public boolean delete(Long userId) {
+        removeRoles(userId);
         String query = "UPDATE users SET deleted = true WHERE user_id = ?;";
         try (Connection connection = ConnectionUtil.getConnection();
                 PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setLong(1, userId);
-            return statement.executeUpdate() == 1;
+            return statement.executeUpdate() > 0;
         } catch (SQLException ex) {
             throw new DataProcessingException("User " + userId + " not updated", ex);
         }
+
     }
 
-    private User getUserByLogin(String login) {
+    private Optional<User> getUserByLogin(String login) {
         String query = "SELECT user_id, user_name, login, password FROM users "
                 + "WHERE login = ? AND deleted = false;";
         try (Connection connection = ConnectionUtil.getConnection();
                 PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setString(1, login);
             ResultSet resultSet = statement.executeQuery();
-            resultSet.next();
-            return retrieveDataFromDb(resultSet);
+            while (resultSet.next()) {
+                return Optional.ofNullable(retrieveDataFromDb(resultSet));
+            }
+            return Optional.empty();
         } catch (SQLException ex) {
             throw new DataProcessingException("User with login " + login
-                    + "is not found", ex);
+                    + " is not found", ex);
         }
     }
 
-    private User getUserById(Long id) {
+    private Optional<User> getUserById(Long id) {
         String query = "SELECT user_id, user_name, login, password FROM users "
                 + " WHERE user_id = ? AND deleted = false;";
         try (Connection connection = ConnectionUtil.getConnection();
                 PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setLong(1, id);
             ResultSet resultSet = statement.executeQuery();
-            resultSet.next();
-            User user = retrieveDataFromDb(resultSet);
-            return user;
+            while (resultSet.next()) {
+                return Optional.ofNullable(retrieveDataFromDb(resultSet));
+            }
+            return Optional.empty();
         } catch (SQLException ex) {
             throw new DataProcessingException("User with id " + id
                     + " is not found", ex);
@@ -166,18 +174,21 @@ public class UserDaoJdbcImpl implements UserDao {
         }
     }
 
-    private boolean defineRoles(Long userId, String role) {
+    private boolean defineRoles(User user) {
         String query = "INSERT INTO users_roles (user_id, role_id) SELECT ?, "
-                + " role_id FROM roles WHERE role_name = ?;";
-
+                    + " role_id FROM roles WHERE role_name = ?;";
         try (Connection connection = ConnectionUtil.getConnection();
-                PreparedStatement statement = connection.prepareStatement(query)) {
-            statement.setLong(1, userId);
-            statement.setString(2, role);
-            return statement.executeUpdate() == 1;
+                 PreparedStatement statement = connection.prepareStatement(query)) {
+            int updates = 0;
+            for (Role role : user.getRoles()) {
+                statement.setLong(1, user.getUserId());
+                statement.setString(2, role.getRoleName().name());
+                updates += statement.executeUpdate();
+            }
+            return updates > 0;
         } catch (SQLException ex) {
-            throw new DataProcessingException("user " + userId + " with role "
-                    + role + " were not updated", ex);
+            throw new DataProcessingException("user " + user.getUserId()
+                        + " was not updated", ex);
         }
     }
 
@@ -186,7 +197,7 @@ public class UserDaoJdbcImpl implements UserDao {
         try (Connection connection = ConnectionUtil.getConnection();
                 PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setLong(1, userId);
-            return statement.executeUpdate() == 1;
+            return statement.executeUpdate() > 0;
         } catch (SQLException ex) {
             throw new DataProcessingException("roles for user " + userId
                     + " were not updated", ex);
