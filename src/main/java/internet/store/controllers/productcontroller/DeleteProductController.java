@@ -3,7 +3,6 @@ package internet.store.controllers.productcontroller;
 import internet.store.lib.Injector;
 import internet.store.service.ProductService;
 import java.io.IOException;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
