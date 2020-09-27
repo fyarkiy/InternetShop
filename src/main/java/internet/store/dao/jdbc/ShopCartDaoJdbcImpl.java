@@ -95,9 +95,8 @@ public class ShopCartDaoJdbcImpl implements ShopCartDao {
     }
 
     private Product retrieveProductDataFromDB(ResultSet resultSet) throws SQLException {
-        Product product = new Product(resultSet.getLong("id"),
+        return new Product(resultSet.getLong("id"),
                 resultSet.getString("product_name"), resultSet.getDouble("price"));
-        return product;
     }
 
     private Optional<ShoppingCart> getShoppingCart(Long userId) {
@@ -110,7 +109,7 @@ public class ShopCartDaoJdbcImpl implements ShopCartDao {
             ShoppingCart shoppingCart = new ShoppingCart(userId);
             if (resultSet.next()) {
                 shoppingCart.setCartId(resultSet.getLong("cart_id"));
-                return Optional.ofNullable(shoppingCart);
+                return Optional.of(shoppingCart);
             }
             return Optional.empty();
         } catch (SQLException ex) {

@@ -62,4 +62,5 @@ public class Role {
     public int hashCode() {
         return Objects.hash(getId(), getRoleName());
     }
+
 }

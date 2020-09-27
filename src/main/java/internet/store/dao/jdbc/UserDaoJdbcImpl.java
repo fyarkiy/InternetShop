@@ -122,8 +122,8 @@ public class UserDaoJdbcImpl implements UserDao {
                 PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setString(1, login);
             ResultSet resultSet = statement.executeQuery();
-            while (resultSet.next()) {
-                return Optional.ofNullable(retrieveDataFromDb(resultSet));
+            if (resultSet.next()) {
+                return Optional.of(retrieveDataFromDb(resultSet));
             }
             return Optional.empty();
         } catch (SQLException ex) {
@@ -139,8 +139,8 @@ public class UserDaoJdbcImpl implements UserDao {
                 PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setLong(1, id);
             ResultSet resultSet = statement.executeQuery();
-            while (resultSet.next()) {
-                return Optional.ofNullable(retrieveDataFromDb(resultSet));
+            if (resultSet.next()) {
+                return Optional.of(retrieveDataFromDb(resultSet));
             }
             return Optional.empty();
         } catch (SQLException ex) {
@@ -151,9 +151,8 @@ public class UserDaoJdbcImpl implements UserDao {
 
     private User retrieveDataFromDb(ResultSet resultSet) throws SQLException {
         long userId = resultSet.getLong("user_id");
-        User user = new User(userId, resultSet.getString("user_name"),
+        return new User(userId, resultSet.getString("user_name"),
                 resultSet.getString("login"), resultSet.getString("password"));
-        return user;
     }
 
     private Set<Role> getUserRoles(Long userId) {
