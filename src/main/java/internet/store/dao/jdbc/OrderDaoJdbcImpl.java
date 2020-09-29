@@ -20,14 +20,37 @@ public class OrderDaoJdbcImpl implements OrderDao {
 
     @Override
     public List<Order> getUserOrders(Long userId) {
-        String query = "SELECT order_id FROM orders WHERE deleted = false AND user_id = " + userId;
-        return getOrders(query);
+        String query = "SELECT order_id FROM orders WHERE deleted = false AND user_id = ?;";
+        List<Long> ordersId = new ArrayList<>();
+        List<Order> orders = new ArrayList<>();
+        try (Connection connection = ConnectionUtil.getConnection();
+                PreparedStatement statement = connection.prepareStatement(query)) {
+            statement.setLong(1, userId);
+            ResultSet resultSet = statement.executeQuery();
+
+            while (resultSet.next()) {
+                orders.add(get(resultSet.getLong("order_id")).get());
+            }
+        } catch (SQLException ex) {
+            throw new DataProcessingException("there are no orders", ex);
+        }
+        return orders;
     }
 
     @Override
     public List<Order> getAll() {
         String query = "SELECT order_id FROM orders WHERE deleted = false;";
-        return getOrders(query);
+        List<Order> orders = new ArrayList<>();
+        try (Connection connection = ConnectionUtil.getConnection();
+                PreparedStatement statement = connection.prepareStatement(query)) {
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                orders.add(get(resultSet.getLong("order_id")).get());
+            }
+        } catch (SQLException ex) {
+            throw new DataProcessingException("there are no orders", ex);
+        }
+        return orders;
     }
 
     @Override
@@ -102,25 +125,6 @@ public class OrderDaoJdbcImpl implements OrderDao {
             throw new DataProcessingException("products from order " + orderId
                     + " were not deleted", ex);
         }
-    }
-
-    private List<Order> getOrders(String query) {
-        List<Long> ordersId = new ArrayList<>();
-        List<Order> orders = new ArrayList<>();
-        try (Connection connection = ConnectionUtil.getConnection();
-                PreparedStatement statement = connection.prepareStatement(query)) {
-            ResultSet resultSet = statement.executeQuery();
-            while (resultSet.next()) {
-                ordersId.add(resultSet.getLong("order_id"));
-            }
-        } catch (SQLException ex) {
-            throw new DataProcessingException("there are no orders", ex);
-        }
-        for (Long orderId : ordersId) {
-            orders.add(get(orderId).get());
-        }
-        return orders;
-
     }
 
     private Order addProductsToOrder(Order order) {
