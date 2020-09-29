@@ -92,8 +92,8 @@ public class UserDaoJdbcImpl implements UserDao {
             statement.setString(1, user.getUserName());
             statement.setString(2, user.getLogin());
             statement.setString(3, user.getPassword());
-            statement.setLong(4, user.getUserId());
-            statement.setBytes(5, user.getSalt());
+            statement.setBytes(4, user.getSalt());
+            statement.setLong(5, user.getUserId());
             statement.executeUpdate();
         } catch (SQLException ex) {
             throw new DataProcessingException("User " + user.getUserId() + " not updated", ex);

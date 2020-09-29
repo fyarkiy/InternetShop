@@ -16,7 +16,7 @@ CREATE TABLE `users` (
                          `user_name` varchar(45) NOT NULL,
                          `login` varchar(45) NOT NULL,
                          `password` varchar(256) NOT NULL,
-                         `salt` varbinary(45) NOT NULL DEFAULT '0',
+                         `salt` varbinary(45) NOT NULL,
                          `deleted` tinyint NOT NULL DEFAULT '0',
                          PRIMARY KEY (`user_id`)
 ) ;
