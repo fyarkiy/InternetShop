@@ -91,7 +91,8 @@ public class ProductDaoJdbcImpl implements ProductDao {
         try (Connection connection = ConnectionUtil.getConnection()) {
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setLong(1, productId);
-            return statement.executeUpdate() == 1;
+            int updates = statement.executeUpdate();
+            return updates > 0;
         } catch (SQLException ex) {
             throw new DataProcessingException("Delete of product with id = "
                     + productId + "is failed", ex);
@@ -99,8 +100,7 @@ public class ProductDaoJdbcImpl implements ProductDao {
     }
 
     private Product retrieveDataFromDB(ResultSet resultSet) throws SQLException {
-        Product product = new Product(resultSet.getLong("id"),
+        return new Product(resultSet.getLong("id"),
                 resultSet.getString("product_name"), resultSet.getDouble("price"));
-        return product;
     }
 }

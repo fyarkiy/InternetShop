@@ -2,6 +2,7 @@ package internet.store.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class Order {
     private Long orderId;
@@ -46,5 +47,23 @@ public class Order {
                 + ", userId="
                 + userId
                 + '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof Order)) {
+            return false;
+        }
+        Order order = (Order) o;
+        return Objects.equals(getOrderId(), order.getOrderId())
+                && Objects.equals(getUserId(), order.getUserId());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getOrderId(), getUserId());
     }
 }

@@ -2,6 +2,7 @@ package internet.store.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class ShoppingCart {
     private Long cartId;
@@ -46,5 +47,23 @@ public class ShoppingCart {
                 + ", userId="
                 + userId
                 + '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof ShoppingCart)) {
+            return false;
+        }
+        ShoppingCart that = (ShoppingCart) o;
+        return getCartId().equals(that.getCartId())
+                && getUserId().equals(that.getUserId());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getCartId(), getUserId());
     }
 }

@@ -1,5 +1,6 @@
 package internet.store.model;
 
+import java.util.Objects;
 import java.util.Set;
 
 public class User {
@@ -10,6 +11,13 @@ public class User {
     private Set<Role> roles;
 
     public User(String userName, String login, String password) {
+        this.userName = userName;
+        this.login = login;
+        this.password = password;
+    }
+
+    public User(Long userId, String userName, String login, String password) {
+        this.userId = userId;
         this.userName = userName;
         this.login = login;
         this.password = password;
@@ -60,9 +68,28 @@ public class User {
         return "User{ userName='"
                 + userName
                 + '\''
-                + ", logIn='"
+                + ", login='"
                 + login
                 + '\''
                 + '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof User)) {
+            return false;
+        }
+        User user = (User) o;
+        return Objects.equals(getUserId(), user.getUserId())
+                && Objects.equals(getUserName(), user.getUserName())
+                && Objects.equals(getLogin(), user.getLogin());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getUserId(), getUserName(), getLogin());
     }
 }
