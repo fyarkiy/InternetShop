@@ -1,6 +1,5 @@
 package internet.store.db;
 
-import internet.store.lib.Dao;
 import internet.store.model.Order;
 import internet.store.model.Product;
 import internet.store.model.ShoppingCart;
@@ -8,7 +7,6 @@ import internet.store.model.User;
 import java.util.ArrayList;
 import java.util.List;
 
-@Dao
 public class Storage {
     public static final List<Order> orders = new ArrayList<>();
     public static final List<Product> products = new ArrayList<>();
