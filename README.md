@@ -18,6 +18,7 @@ and jsp files. This also includes Filters for Authorisation
 - Service - realisation of business logic
 
 *Implementation details*
+
 - Injector is used across all Dao and Service classes
 - Dao has two implementations - internal storage (class Storage) 
 and JDBC implementation of working with mySQL DB. 
