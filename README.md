@@ -1,4 +1,4 @@
-"# OwnProject_simpleShop" 
+# OwnProject_simpleShop
 *Project purpose*
 
 Implementation of basic internet shop functionality. It has 
