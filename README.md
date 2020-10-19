@@ -1,5 +1,5 @@
 # OwnProject_simpleShop
-*Project purpose*
+##Project purpose
 
 Implementation of basic internet shop functionality. It has 
 - user authentication  
@@ -8,7 +8,7 @@ Implementation of basic internet shop functionality. It has
 - add and remove products to shopping cart
 - convert shopping cart into order
 
-*Project structure*
+##Project structure
 
 Project has following levels: 
 - DAO to connect with mySQL based on JDBC
@@ -17,7 +17,7 @@ and jsp files. This also includes Filters for Authorisation
  and Authentication
 - Service - realisation of business logic
 
-*Implementation details*
+##Implementation details
 
 - Injector is used across all Dao and Service classes
 - Dao has JDBC implementation - working with mySQL DB. 
@@ -30,7 +30,7 @@ shopping carts and orders. But has exclusive rights to
 create and delete products, view all orders and users, 
 delete order and user;  
 
-*Launch guide*
+##Launch guide
 
 - Install JDK 1.11, Maven, tomcat.
 - Adjust settings to your DataBase in ConnectionUtil;
@@ -39,7 +39,7 @@ set up your data base (schema and necessary tables).
 Also it will help to set up roles and first user with 
 Admin role. You should adjust password for this user.
 
-*Author*
+###Author
 
 Felix Yaroslavskiy
 https://github.com/fyarkiy/OwnProject_simpleShop
