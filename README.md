@@ -20,12 +20,8 @@ and jsp files. This also includes Filters for Authorisation
 *Implementation details*
 
 - Injector is used across all Dao and Service classes
-- Dao has two implementations - internal storage (class Storage) 
-and JDBC implementation of working with mySQL DB. 
-To shift working with internal Storage, you need to set Annotation
-@Dao for all DaoImpl classes and Storage and remove @Dao from
-...DaoJdbcImpl classes;
-- Security:  implementing hash  and salt (SHA-512 algorithm)
+- Dao has JDBC implementation - working with mySQL DB. 
+- Security:  implementing hash and salt (SHA-512 algorithm)
  to store passwords in DataBase ;
  - Roles: two roles (Admin and User) were defined with different 
  access rights.  
